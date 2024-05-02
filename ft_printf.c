@@ -10,54 +10,65 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-int	ft_check(va_list args, const char* format)
+static int	ft_check(va_list args, const char* format, int len_args, int j)
 {
-	int len_arg;
-	int	j;
-	
-	j = 0;
-	i = 0;
+	len_args = 0;
 	if (format[i] == 'c')
-		len_arg += ft_putchar(va_arg(args,int));
-		return (len_arg);
+		len_args += ft_putchar(va_arg(args,int));
 	else if (format[i] == 'd' || format[i] == 'i')
-		len_arg += ft_putnbr(va_arg(args,int), int j);
-		return (len_arg);
+		len_args += ft_putnbr(va_arg(args,int), j);
 	else if (format[i] == 's')
-		len_arg += ft_putstr(va_arg(args, char*));
-		return (len_arg);
+		len_args += ft_putstr(va_arg(args, char*));
 	else if (format[i] == '%')
-		len_arg += ft_putchar(va_arg(args,int));
-		return (len_arg);
+		len_args += ft_putchar(va_arg(args,int));
 	else if (format[i] == 'u')
-		len_arg += ft_putnbr(va_arg(args, unsigned int));
-		return (len_arg);
-	
-		
+		len_args += ft_putnbr(va_arg(args, unsigned int), j);
+	else if (format[i] == 'p')
+	{	
+		len_args += ft_putstr("x0");
+		len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789abcdef"));
+	}
+	else if (format[i] == 'x' || format[i] == 'X');
+	{
+		if (format[i] == 'x')
+			len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789abcdef"));
+		else
+			len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789ABCDEF"));
+	}
+	return (len_args);		
 }
 
 int	ft_printf(const char* format, ...)
 {
-	int	i;
 	va_list	args;
+	int	i;
+	int	j;
 	int	len_args;
 	
+	i = 0;
 	j = 0;
 	va_start(args, format);
-	i = 0;
 	len_args;
 	while (format[i])
-	{
+	{	
+		j = 0;
 		if (format[i] == '%')
 		{
-			len_args += ft_check(va_args, &format[i + 1]);
+			len_args += ft_check(va_args, &format[i + 1], len_args, j);
 		}
 		else
 			ft_putchar(format[i]);
 		i++;
 	}
+	va_end(args);
 	return (len_arg);
 	
+}
+
+int	main(voi)
+{
+	ft_printf("%s", "1234");
+	return (0);
 }

@@ -10,13 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	ft_putchar_bis(char c, int i)
+#include "libftprintf.h"
+
+static void	ft_putchar_bis(char c, int j)
 {
 	
 	write(1, &c, 1);
 }
 
-int	ft_putnbr_hex(int n, int j)
+int	ft_putnbr_hex(int n, int j, char *base)
 {	
 	
 	if (nbr < 0)
