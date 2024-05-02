@@ -6,11 +6,11 @@
 /*   By: gacavali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 11:11:42 by gacavali          #+#    #+#             */
-/*   Updated: 2024/05/02 12:01:59 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:10:29 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_h
+#ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
 #include <unistd.h>
