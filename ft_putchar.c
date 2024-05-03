@@ -12,11 +12,20 @@
 
 #include "libftprintf.h"
 
-int	ft_putchar(char c, int	j)
+int	ft_putchar(char c)
 {	
+	int	j;
+
+	j = 0;
 	if (c == '%')
+	{
 		write(1, "%", 1);
-	else	
+		j++;
+	}	
+	else
+	{	
 		write(1, &c, 1);
-	return (1);
+		j++;
+	}
+	return (j);
 }

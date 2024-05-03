@@ -17,15 +17,15 @@ int	ft_putnbr_hex(int n, int j, char *base)
 	
 	if (n < 0)
 	{
-		ft_putchar('-', j++);
+		j += ft_putchar('-');
 		n = -n;
 	}
 	if (n >= 16)
 	{	
-		ft_putnbr_hex(n / 16, j, base);
-		ft_putnbr_hex(n % 16, j, base);
+		j = ft_putnbr_hex(n / 16, j, base);
+		j = ft_putnbr_hex(n % 16, j, base);
 	}	
 	else
-		ft_putchar(base[n], j++);
+		j += ft_putchar(base[n]);
 	return (j);
 }

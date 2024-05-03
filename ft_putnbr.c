@@ -13,7 +13,7 @@
 #include "libftprintf.h"
 
 int	ft_putnbr(int n, int j)
-{
+{	
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
@@ -22,15 +22,15 @@ int	ft_putnbr(int n, int j)
 	}
 	if (n < 0)
 	{
-		ft_putchar('-', j++);
+		j += ft_putchar('-');
 		n = n * -1;
 	}
 	if (n >= 10)
 	{
-		ft_putnbr(n / 10, j);
-		ft_putnbr(n % 10, j++);
+		j = ft_putnbr(n / 10, j);
+		j = ft_putnbr(n % 10, j);
 	}
 	else
-		ft_putchar(n + '0', j);
+		j += ft_putchar(n + '0');
 	return (j);
 }
