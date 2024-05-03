@@ -10,22 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {	
-	int	j;
-
-	j = 0;
-	if (c == '%')
-	{
-		write(1, "%", 1);
-		j++;
-	}	
-	else
-	{	
+	if (c == '\0')
+		write(1, "\0", 1);
+	else	
 		write(1, &c, 1);
-		j++;
-	}
-	return (j);
+	return (1);
 }
