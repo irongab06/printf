@@ -18,10 +18,10 @@ int	ft_putstr(char *s)
 
 	i = 0;
 	if (s == NULL)
-		return ;
+		return (i);
 	while (s[i])
 	{
-		write(fd, &s[i], 1);
+		write(1, &s[i], 1);
 		i++;
 	}
 	return (i);

@@ -12,24 +12,20 @@
 
 #include "libftprintf.h"
 
-static void	ft_putchar_bis(char c, int j)
-{
-	
-	write(1, &c, 1);
-}
-
 int	ft_putnbr_hex(int n, int j, char *base)
 {	
 	
-	if (nbr < 0)
+	if (n < 0)
 	{
-		ft_putchar("-", j++);
+		ft_putchar('-', j++);
 		n = -n;
 	}
-	if (nbr >= 16)
-		ft_putnbr_hex(n / 16, j);
-		ft_putnbr_bis(n % 16, j++);
+	if (n >= 16)
+	{	
+		ft_putnbr_hex(n / 16, j, base);
+		ft_putnbr_hex(n % 16, j, base);
+	}	
 	else
-		ft_putchar(base[n]);
+		ft_putchar(base[n], j++);
 	return (j);
 }

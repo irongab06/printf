@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacavali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 15:08:25 by gacavali          #+#    #+#             */
-/*   Updated: 2024/05/02 15:13:25 by gacavali         ###   ########.fr       */
+/*   Created: 2024/04/29 15:11:29 by gacavali          #+#    #+#             */
+/*   Updated: 2024/04/29 15:12:13 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putchar(char c, int	j)
-{	
-	if (c == '%')
-		write(1, "%", 1);
-	else	
-		write(1, &c, 1);
-	return (1);
+int	ft_putnbr(int n, int j)
+{
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		j++;
+		return (j);
+	}
+	if (n < 0)
+	{
+		ft_putchar('-', j++);
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10, j);
+		ft_putnbr(n % 10, j++);
+	}
+	else
+		ft_putchar(n + '0', j);
+	return (j);
 }

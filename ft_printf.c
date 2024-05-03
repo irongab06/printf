@@ -11,32 +11,30 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
-static int	ft_check(va_list args, const char* format, int len_args, int j)
-{
+static int	ft_check(va_list args, const char *format, int len_args, int j)
+{	
 	len_args = 0;
-	if (format[i] == 'c')
-		len_args += ft_putchar(va_arg(args,int));
-	else if (format[i] == 'd' || format[i] == 'i')
+	if (*format == 'c')
+		len_args += ft_putchar(va_arg(args,int), j);
+	else if (*format == 'd' || *format == 'i')
 		len_args += ft_putnbr(va_arg(args,int), j);
-	else if (format[i] == 's')
+	else if (*format == 's')
 		len_args += ft_putstr(va_arg(args, char*));
-	else if (format[i] == '%')
-		len_args += ft_putchar(va_arg(args,int));
-	else if (format[i] == 'u')
+	else if (*format == '%')
+		len_args += ft_putchar(va_arg(args,int), j);
+	else if (*format == 'u')
 		len_args += ft_putnbr(va_arg(args, unsigned int), j);
-	else if (format[i] == 'p')
+	else if (*format == 'p')
 	{	
-		len_args += ft_putstr("x0");
-		len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789abcdef"));
+		len_args += ft_putstr("0x10");
+		len_args += ft_putnbr_hex(va_arg(args, int), j,  "0123456789abcdef");
 	}
-	else if (format[i] == 'x' || format[i] == 'X');
-	{
-		if (format[i] == 'x')
-			len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789abcdef"));
-		else
-			len_args += ft_putnbr_hex(va_arg(args, int, j,  "0123456789ABCDEF"));
-	}
+	else if (*format == 'x')
+			len_args += ft_putnbr_hex(va_arg(args, int), j,  "0123456789abcdef");
+	else if (*format == 'X')
+			len_args += ft_putnbr_hex(va_arg(args, int), j,  "0123456789ABCDEF");
 	return (len_args);		
 }
 
@@ -50,25 +48,30 @@ int	ft_printf(const char* format, ...)
 	i = 0;
 	j = 0;
 	va_start(args, format);
-	len_args;
+	len_args = 0;
 	while (format[i])
 	{	
 		j = 0;
 		if (format[i] == '%')
 		{
-			len_args += ft_check(va_args, &format[i + 1], len_args, j);
+			i++;
+			len_args += ft_check(args, &format[i], len_args, j);
 		}
 		else
-			ft_putchar(format[i]);
+			ft_putchar(format[i], j);
 		i++;
 	}
 	va_end(args);
-	return (len_arg);
+	return (len_args);
 	
 }
 
-int	main(voi)
+int	main(void)
 {
-	ft_printf("%s", "1234");
+	char	*str;
+
+	str = "12344564jdfkhdkfjhddgkdvkhxkvkhxh";
+	ft_printf("printf gabi%p\n", "*str");
+	printf("printf le vrai %p\n", "*str");
 	return (0);
 }
