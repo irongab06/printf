@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_hex(unsigned long long n, int j, char *base)
+int	ft_putnbr_hex(unsigned int n, int j, char *base)
 {	
 	
 	if (n < 0)

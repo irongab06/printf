@@ -21,6 +21,8 @@ int	ft_putchar(char c);
 int	ft_putstr(char *s);
 int	ft_putnbr(int n, int j);
 int	ft_putnbr_hex(unsigned int n, int j, char *base);
+int	ft_putnbr_unsigned(unsigned int n, int j);
+int	ft_putnbr_addr(unsigned long n, char *base, int j);
 
 
 #endif

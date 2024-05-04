@@ -13,12 +13,11 @@
 #include "ft_printf.h"
 
 int	ft_putnbr(int n, int j)
-{	
+{
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		j++;
-		return (j);
+		return (11);
 	}
 	if (n < 0)
 	{
