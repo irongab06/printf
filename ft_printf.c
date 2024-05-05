@@ -13,13 +13,11 @@
 #include "ft_printf.h"
 //#include <stdio.h>
 
-static int	ft_check(va_list *args, const char *format, int j)
+static int	ft_check(va_list *args, const char *format, int j, char *base_min)
 {
 	int	len_args;
-	char	*base_min;
 	char	*base_maj;
-	
-	base_min = "0123456789abcdef";
+
 	base_maj = "0123456789ABCDEF";
 	len_args = 0;
 	if (*format == 'c')
@@ -47,10 +45,12 @@ static int	ft_check(va_list *args, const char *format, int j)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		len_args;
-	int	j;
+	int			len_args;
+	int			j;
+	char	*base_min;
 
 	j = 0;
+	base_min = "0123456789abcdef";
 	va_start(args, format);
 	len_args = 0;
 	while (*format)
@@ -58,7 +58,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			len_args += ft_check(&args, format, j);
+			len_args += ft_check(&args, format, j, base_min);
 		}
 		else
 		{
