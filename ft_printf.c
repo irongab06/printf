@@ -6,16 +6,16 @@
 /*   By: gacavali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:41:36 by gacavali          #+#    #+#             */
-/*   Updated: 2024/05/02 15:26:33 by gacavali         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:57:20 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//#include <stdio.h>
+#include <stdio.h>
 
 static int	ft_check(va_list *args, const char *format, int j, char *base_min)
 {
-	int	len_args;
+	int		len_args;
 	char	*base_maj;
 
 	base_maj = "0123456789ABCDEF";
@@ -31,10 +31,7 @@ static int	ft_check(va_list *args, const char *format, int j, char *base_min)
 	else if (*format == 'u')
 		len_args += ft_putnbr_unsigned(va_arg(*args, unsigned int), j);
 	else if (*format == 'p')
-	{
-		len_args += ft_putstr("0x");
-		len_args += ft_putnbr_addr(va_arg(*args, unsigned long), base_min, j);
-	}
+		len_args += ft_putnbr_addr1(va_arg(*args, unsigned long), base_min, j);
 	else if (*format == 'x')
 		len_args += ft_putnbr_hex(va_arg(*args, unsigned int), j, base_min);
 	else if (*format == 'X')
@@ -45,8 +42,8 @@ static int	ft_check(va_list *args, const char *format, int j, char *base_min)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int			len_args;
-	int			j;
+	int		len_args;
+	int		j;
 	char	*base_min;
 
 	j = 0;
@@ -104,8 +101,9 @@ int	main(void)
 	int	b;
 	a = ft_printf(" NULL %s NULL ", NULL);
 	b = printf(" NULL %s NULL ", NULL);
-	printf("gab1%i", a);
-	printf("gab2%i", b);
+	
+	ft_printf("gab1%p\n", 0);
+	printf("gab2%p", 0);
 	
 	return (0);
 }

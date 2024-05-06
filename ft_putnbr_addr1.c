@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_addr.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_addr1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacavali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 10:10:32 by gacavali          #+#    #+#             */
-/*   Updated: 2024/05/06 11:57:52 by gacavali         ###   ########.fr       */
+/*   Created: 2024/05/06 11:10:31 by gacavali          #+#    #+#             */
+/*   Updated: 2024/05/06 11:58:29 by gacavali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_addr(unsigned long n, char *base, int j)
+int	ft_putnbr_addr1(unsigned long n, char *base_min, int j)
 {
-	if (n >= 16)
+	int	count;
+
+	count = 0;
+	if (n == 0)
 	{
-		j = ft_putnbr_addr(n / 16, base, j);
-		j = ft_putnbr_addr(n % 16, base, j);
+		write(1, "(nil)", 5);
+		return (5);
 	}
-	else
-		j += ft_putchar(base[n]);
-	return (j);
+	count += ft_putstr("0x");
+	count += ft_putnbr_addr(n, base_min, j);
+	return (count);
 }
